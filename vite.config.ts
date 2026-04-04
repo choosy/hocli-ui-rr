@@ -7,5 +7,9 @@ export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
   server: {
     allowedHosts: ["stefan.local.hocli.com"],
+    hmr: {
+      host: "192.168.1.150",
+      port: 5173,
+    },
   },
 });
