@@ -28,11 +28,19 @@ function ConnectWallet() {
   }
 
   return (
-    <div>
+    <div className="text-3xl color-white">
+      aaa
       {connectors.map((connector) => (
-        <button key={connector.uid} onClick={() => connect({ connector })}>
-          {connector.name}
-        </button>
+        <p>
+          <a
+            className="text-white"
+            key={connector.uid}
+            href="#"
+            onClick={() => connect({ connector })}
+          >
+            {connector.name}
+          </a>{" "}
+        </p>
       ))}
     </div>
   );
