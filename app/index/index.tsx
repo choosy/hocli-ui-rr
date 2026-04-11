@@ -1,3 +1,4 @@
+import { AppKitButton } from "@reown/appkit/react";
 import type { Route } from "./+types/components/index/index";
 
 export function meta({}: Route.MetaArgs) {
@@ -11,5 +12,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Index() {
-  return <div>ha</div>;
+  return (
+    <div>
+      <AppKitButton />
+    </div>
+  );
 }
