@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useMatches,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -20,6 +21,17 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const matches = useMatches();
+
+  //console.log("matches", matches);
+
+  const filteredMatches = matches.filter(
+    (m) => m.handle && m.handle.hasOwnProperty("bodyClassName"),
+  );
+  console.log("filteredMatches", filteredMatches);
+
+  const bodyClass = filteredMatches[0].handle.bodyClassName;
+
   return (
     <html lang="en">
       <head>
@@ -28,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={bodyClass}>
         {children}
         <ScrollRestoration />
         <Scripts />
