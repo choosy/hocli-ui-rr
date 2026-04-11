@@ -9,7 +9,7 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import { AppKitProvider } from "./appkit";
+import { Web3Provider } from "./web3provider";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -52,9 +52,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <AppKitProvider>
+    <Web3Provider>
       <Outlet />
-    </AppKitProvider>
+    </Web3Provider>
   );
 }
 

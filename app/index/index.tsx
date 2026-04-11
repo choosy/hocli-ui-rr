@@ -1,4 +1,4 @@
-import { AppKitButton } from "@reown/appkit/react";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 import type { Route } from "./+types/components/index/index";
 
 export function meta({}: Route.MetaArgs) {
@@ -11,10 +11,37 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+function ConnectWallet() {
+  const { connectors, connect } = useConnect();
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+
+  if (isConnected) {
+    return (
+      <div>
+        <p>
+          {address?.slice(0, 6)}...{address?.slice(-4)}
+        </p>
+        <button onClick={() => disconnect()}>Disconnect</button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {connectors.map((connector) => (
+        <button key={connector.uid} onClick={() => connect({ connector })}>
+          {connector.name}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Index() {
   return (
     <div>
-      <AppKitButton />
+      <ConnectWallet />
     </div>
   );
 }
