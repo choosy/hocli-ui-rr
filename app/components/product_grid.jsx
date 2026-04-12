@@ -1,9 +1,9 @@
 "use client";
 
 import { Link } from "react-router";
-import { useStore } from "~/lib/store";
-import { useCart } from "~/lib/cart";
-import { getImageURLByHeight, selectImageByType } from "~/lib/images";
+import { useStore } from "/app/lib/store";
+import { useCart } from "/app/lib/cart";
+import { getImageURLByHeight, selectImageByType } from "/app/lib/images";
 
 export function ProductGrid({ products }) {
   const { showSizesMenu, toggleShowSizesMenu } = useStore();

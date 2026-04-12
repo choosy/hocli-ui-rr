@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+  plugins: [tailwindcss(), tsconfigPaths(), reactRouter()],
   server: {
     allowedHosts: ["stefan.local.hocli.com"],
     hmr: {
