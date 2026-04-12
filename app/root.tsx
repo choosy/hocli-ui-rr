@@ -29,7 +29,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const filteredMatches = matches.filter(
     (m) => m.handle && m.handle.hasOwnProperty("bodyClassName"),
   );
-  console.log("filteredMatches", filteredMatches);
 
   const bodyClass = filteredMatches[0].handle.bodyClassName;
 

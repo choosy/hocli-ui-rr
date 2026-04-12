@@ -1,5 +1,5 @@
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-import type { Route } from "./+types/components/index/index";
+import type { Route } from "./+types/index";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -44,6 +44,20 @@ function ConnectWallet() {
       ))}
     </div>
   );
+}
+
+export async function loader({ params }: Route.LoaderArgs) {
+  console.log("opa sa sa 1");
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const data = await fetch(`${apiUrl}/list_products`, {
+    method: "POST",
+    cache: "no-store",
+  });
+  console.log(data.status);
+  const products = await data.json();
+  console.log("products variants for leopard and the moonare");
+
+  console.log(products[0]);
 }
 
 export default function Index() {
