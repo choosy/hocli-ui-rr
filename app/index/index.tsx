@@ -1,3 +1,6 @@
+import { Link } from "react-router";
+
+import { ProductGrid } from "~/components/product_grid";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import type { Route } from "./+types/index";
 
@@ -62,8 +65,28 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 export default function Index() {
   return (
-    <div>
-      <ConnectWallet />
+    <div className="w-full p-4">
+      <div className="mx-auto mt-56 lg:max-w-[1200px]">
+        <div>
+          <h1 className="text-shadow-custom text-light-gray mb-2 text-2xl font-semibold lg:mb-5 lg:text-6xl lg:leading-tight">
+            CRAFTED FOR <br /> ETHEREUM AFICIONADOS
+          </h1>
+          <h2 className="text-light-gray mb-2 text-base font-normal lg:mb-5 lg:text-2xl lg:font-light">
+            Embrace the future and support the real web3 economy
+          </h2>
+          <Link
+            to={{
+              pathname: "/about-us",
+            }}
+            className="text-accent-yellow text-sm font-normal underline decoration-auto"
+          >
+            FIND OUT MORE
+          </Link>
+        </div>
+        {/* end HERO div */}
+        <ProductGrid products={products}></ProductGrid>
+      </div>
+      {/* end mt-* div */}
     </div>
   );
 }
