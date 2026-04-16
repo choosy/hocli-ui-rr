@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-import { ProductGrid } from "~/components/product_grid";
+import { ProductGrid } from "app/components/product_grid";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import type { Route } from "./+types/index";
 
