@@ -61,9 +61,12 @@ export async function loader({ params }: Route.LoaderArgs) {
   console.log("products variants for leopard and the moonare");
 
   console.log(products[0]);
+
+  return { products };
 }
 
-export default function Index() {
+export default function Index({ loaderData }: Route.ComponentProps) {
+  let products = loaderData.products;
   return (
     <div className="w-full p-4">
       <div className="mx-auto mt-56 lg:max-w-[1200px]">
