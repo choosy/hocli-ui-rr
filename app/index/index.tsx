@@ -37,17 +37,27 @@ function ConnectWallet() {
     <div className="text-3xl color-white">
       aaa
       {connectors.map((connector) => (
-        <p>
-          <a
+        <p key={connector.uid}>
+          <button
             className="text-white"
-            key={connector.uid}
-            href="#"
-            onClick={() => connect.mutate({ connector })}
+            type="button"
+            onClick={() =>
+              connect.mutate(
+                { connector },
+                {
+                  onError: (err) => console.error("connect error", err),
+                  onSuccess: (data) => console.log("connect success", data),
+                },
+              )
+            }
           >
             {connector.name}
-          </a>{" "}
+          </button>{" "}
         </p>
       ))}
+      {connect.error && (
+        <p className="text-red-500 text-base">Error: {connect.error.message}</p>
+      )}
     </div>
   );
 }
