@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 
 import { ProductGrid } from "app/components/product_grid";
-import { useConnect, useDisconnect } from "wagmi";
+import { useConnect, useConnectors, useConnection, useDisconnect } from "wagmi";
 import type { Route } from "./+types/index";
 import type { Product } from "app/types/product";
 
@@ -16,17 +16,19 @@ export function meta({}: Route.MetaArgs) {
 }
 
 function ConnectWallet() {
-  const { connectors, connect } = useConnect();
-  const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
+  const connect = useConnect();
+  const connectors = useConnectors();
+  const connection = useConnection();
+  const address = connection.address;
+  const disconnect = useDisconnect();
 
-  if (isConnected) {
+  if (connect.isSuccess) {
     return (
       <div>
         <p>
           {address?.slice(0, 6)}...{address?.slice(-4)}
         </p>
-        <button onClick={() => disconnect()}>Disconnect</button>
+        <button onClick={() => disconnect.mutate()}>Disconnect</button>
       </div>
     );
   }
@@ -40,7 +42,7 @@ function ConnectWallet() {
             className="text-white"
             key={connector.uid}
             href="#"
-            onClick={() => connect({ connector })}
+            onClick={() => connect.mutate({ connector })}
           >
             {connector.name}
           </a>{" "}
@@ -72,6 +74,9 @@ export default function Index({ loaderData }: Route.ComponentProps) {
     <div className="w-full p-4">
       <div className="mx-auto mt-56 lg:max-w-[1200px]">
         <div>
+          aaa
+          <ConnectWallet />
+          aaa
           <h1 className="text-shadow-custom text-light-gray mb-2 text-2xl font-semibold lg:mb-5 lg:text-6xl lg:leading-tight">
             CRAFTED FOR <br /> ETHEREUM AFICIONADOS
           </h1>
