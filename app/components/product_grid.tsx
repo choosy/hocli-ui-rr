@@ -1,15 +1,16 @@
 "use client";
 
 import { Link } from "react-router";
-import { useStore } from "/app/lib/store";
-import { useCart } from "/app/lib/cart";
-import { getImageURLByHeight, selectImageByType } from "/app/lib/images";
+import { useStore } from "app/lib/store";
+import { useCart } from "app/lib/cart";
+import { getImageURLByHeight, selectImageByType } from "app/lib/images";
+import type { Image, Product } from "app/types/product";
 
-export function ProductGrid({ products }) {
+export function ProductGrid({ products }: { products: Product[] }) {
   const { showSizesMenu, toggleShowSizesMenu } = useStore();
   const { handleAddCart } = useCart();
 
-  const imagesMap = {};
+  const imagesMap: Record<number, Image> = {};
   for (const product of products) {
     imagesMap[product.id] = selectImageByType(product.images, "artwork");
   }

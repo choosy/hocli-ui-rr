@@ -1,8 +1,9 @@
 import { Link } from "react-router";
 
 import { ProductGrid } from "app/components/product_grid";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { useConnect, useDisconnect } from "wagmi";
 import type { Route } from "./+types/index";
+import type { Product } from "app/types/product";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -57,7 +58,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     cache: "no-store",
   });
   console.log(data.status);
-  const products = await data.json();
+  const products: Product[] = await data.json();
   console.log("products variants for leopard and the moonare");
 
   console.log(products[0]);
