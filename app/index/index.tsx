@@ -4,6 +4,7 @@ import { ProductGrid } from "app/components/product_grid";
 import { useConnect, useConnectors, useConnection, useDisconnect } from "wagmi";
 import type { Route } from "./+types/index";
 import type { Product } from "app/types/product";
+import { useEffect } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -21,6 +22,10 @@ function ConnectWallet() {
   const connection = useConnection();
   const address = connection.address;
   const disconnect = useDisconnect();
+
+  useEffect(() => {
+    console.log("ConnectWallet mounted on client");
+  }, []);
 
   if (connect.isSuccess) {
     return (
@@ -41,15 +46,16 @@ function ConnectWallet() {
           <button
             className="text-white"
             type="button"
-            onClick={() =>
+            onClick={() => {
+              console.log("I am clicked");
               connect.mutate(
                 { connector },
                 {
                   onError: (err) => console.error("connect error", err),
                   onSuccess: (data) => console.log("connect success", data),
                 },
-              )
-            }
+              );
+            }}
           >
             {connector.name}
           </button>{" "}
