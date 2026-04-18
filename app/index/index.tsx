@@ -1,10 +1,8 @@
 import { Link } from "react-router";
 
 import { ProductGrid } from "app/components/product_grid";
-import { useConnect, useConnectors, useConnection, useDisconnect } from "wagmi";
 import type { Route } from "./+types/index";
 import type { Product } from "app/types/product";
-import { useEffect } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -16,70 +14,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-function ConnectWallet() {
-  const connect = useConnect();
-  const connectors = useConnectors();
-  const connection = useConnection();
-  const address = connection.address;
-  const disconnect = useDisconnect();
-
-  useEffect(() => {
-    console.log("ConnectWallet mounted on client");
-  }, []);
-
-  if (connect.isSuccess) {
-    return (
-      <div>
-        <p>
-          {address?.slice(0, 6)}...{address?.slice(-4)}
-        </p>
-        <button onClick={() => disconnect.mutate()}>Disconnect</button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="text-3xl color-white">
-      aaa
-      {connectors.map((connector) => (
-        <p key={connector.uid}>
-          <button
-            className="text-white"
-            type="button"
-            onClick={() => {
-              console.log("I am clicked");
-              connect.mutate(
-                { connector },
-                {
-                  onError: (err) => console.error("connect error", err),
-                  onSuccess: (data) => console.log("connect success", data),
-                },
-              );
-            }}
-          >
-            {connector.name}
-          </button>{" "}
-        </p>
-      ))}
-      {connect.error && (
-        <p className="text-red-500 text-base">Error: {connect.error.message}</p>
-      )}
-    </div>
-  );
-}
-
 export async function loader({ params }: Route.LoaderArgs) {
-  console.log("opa sa sa 1");
   const apiUrl = import.meta.env.VITE_API_URL;
   const data = await fetch(`${apiUrl}/list_products`, {
     method: "POST",
     cache: "no-store",
   });
-  console.log(data.status);
   const products: Product[] = await data.json();
-  console.log("products variants for leopard and the moonare");
-
-  console.log(products[0]);
 
   return { products };
 }
@@ -90,9 +31,6 @@ export default function Index({ loaderData }: Route.ComponentProps) {
     <div className="w-full p-4">
       <div className="mx-auto mt-56 lg:max-w-[1200px]">
         <div>
-          aaa
-          <ConnectWallet />
-          aaa
           <h1 className="text-shadow-custom text-light-gray mb-2 text-2xl font-semibold lg:mb-5 lg:text-6xl lg:leading-tight">
             CRAFTED FOR <br /> ETHEREUM AFICIONADOS
           </h1>
