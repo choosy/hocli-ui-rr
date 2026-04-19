@@ -8,9 +8,10 @@ export const handle = {
 };
 
 export default function Layout() {
-  return;
-  <div>
-    <Header />
-    <Outlet />;
-  </div>;
+  return (
+    <div>
+      <Header />
+      <Outlet />;
+    </div>
+  );
 }

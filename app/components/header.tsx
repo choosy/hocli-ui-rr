@@ -7,7 +7,7 @@ import { useStore } from "app/lib/store";
 import { ConnectedAccount } from "./connected_account";
 import { Nav } from "./nav";
 
-import Logo from "../assets/logo.svg";
+import Logo from "app/images/logo.svg";
 
 export function Header() {
   const { showCart } = useStore();

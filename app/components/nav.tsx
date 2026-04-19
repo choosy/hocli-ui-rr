@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from "react-router";
 
 export function Nav({ menuItems, className }) {
   return (
@@ -11,15 +11,15 @@ export function Nav({ menuItems, className }) {
               className="border-b border-stroke last:border-none p-5 sm:border-none sm-p-0"
             >
               <Link
-                href="#"
+                to="#"
                 className="pb-1 lg:hover:border-b-2 lg:hover:border-accent-yellow"
               >
                 {menuItem.name}
               </Link>
             </li>
-          )
+          );
         })}
       </ul>
     </nav>
-  )
+  );
 }
