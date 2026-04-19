@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import { Header } from "app/components/header";
+import { Cart } from "/app/components/cart";
 
 export const handle = {
   bodyClassName:
@@ -10,6 +11,7 @@ export const handle = {
 export default function Layout() {
   return (
     <div>
+      <Cart />
       <Header />
       <Outlet />;
     </div>
