@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+import { Header } from "app/components/header";
 
 export const handle = {
   bodyClassName:
@@ -7,5 +8,9 @@ export const handle = {
 };
 
 export default function Layout() {
-  return <Outlet />;
+  return;
+  <div>
+    <Header />
+    <Outlet />;
+  </div>;
 }
