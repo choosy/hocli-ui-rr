@@ -18,7 +18,7 @@ export function Cart() {
   const { closeCart, handleUpdateQty } = useCart();
 
   // const cartVisible = true
-  const spring = { type: "spring", bounce: 0.2, duration: 0.9 };
+  const spring = { type: "spring" as const, bounce: 0.2, duration: 0.9 };
   let variants;
   let isLargeScreen;
 
@@ -92,7 +92,7 @@ export function Cart() {
             variants={variants}
             className={`bg-popup-bg fixed top-0 -right-[95vw] z-11 flex h-[99vh] w-[95vw] flex-col gap-y-4 overflow-y-auto p-4 lg:-right-[30vw] lg:w-[30vw]`}
           >
-            <ConnectedAccount extraClass="bg-primary-black border border-black rounded-lg" />
+            <ConnectedAccount />
             <div className="flex justify-between text-white">
               <h4 className="flex-none text-xl">My cart</h4>
               <div className="text-primary-black bg-accent-yellow mx-2 flex h-7 w-7 items-center justify-center rounded-full">
@@ -116,7 +116,7 @@ export function Cart() {
                     >
                       <div className="flex-none" key={cartItem.variant_id}>
                         <img
-                          key={cartItem.variantId}
+                          key={cartItem.variant_id}
                           alt={cartItem.name}
                           src={getImageURLCommon(
                             cartItem.image,
@@ -129,7 +129,7 @@ export function Cart() {
                       {/* begin box BIG on the right */}
                       <div
                         className="my-6 flex w-full flex-row"
-                        key={cartItem.variantId}
+                        key={cartItem.variant_id}
                       >
                         {/* begin box-on-left */}
                         <div className="flex grow flex-col justify-between">

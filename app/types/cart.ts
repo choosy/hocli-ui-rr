@@ -1,4 +1,4 @@
-interface CartItem {
+export interface CartItem {
   variant_id: number;
   usd_price: number;
   size: string;
@@ -8,7 +8,7 @@ interface CartItem {
   qty: number;
 }
 
-interface Session {
+export interface Session {
   session_id: string;
-  cart: Array<CartItem>;
+  cart: CartItem[];
 }

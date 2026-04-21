@@ -5,7 +5,11 @@ export const apiBase = import.meta.env.VITE_API_URL;
 console.log("apiBase is ########################");
 console.log(apiBase);
 
-export async function query(method, path, payload) {
+export async function query<T = unknown>(
+  method: "get" | "post",
+  path: string,
+  payload?: unknown,
+): Promise<T> {
   // console.log('query() called with')
   // console.log(`method ${method}`)
   // console.log(`path ${path}`)
@@ -14,13 +18,10 @@ export async function query(method, path, payload) {
 
   const url = `${apiBase}${path}`;
 
-  let response;
-
-  if (method === "get") {
-    response = await axios.get(url, payload); // essential to await
-  } else {
-    response = await axios.post(url, payload); // essential to await
-  }
+  const response =
+    method === "get"
+      ? await axios.get<T>(url)
+      : await axios.post<T>(url, payload);
 
   console.log("query returns response.data -> see below");
   console.log(response.data);
