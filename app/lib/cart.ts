@@ -31,7 +31,7 @@ export const useCart = () => {
     color: string,
     size: string,
     qty: number,
-  ): void => {
+  ) => {
     addCartMutation.mutate({
       product_id: productId,
       size: size,
