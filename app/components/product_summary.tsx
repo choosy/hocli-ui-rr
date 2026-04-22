@@ -1,5 +1,3 @@
-'use client'
-
 export function Summary({ summary, ...props }) {
   return (
     <div className="border border-red-500">

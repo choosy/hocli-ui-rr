@@ -1,5 +1,3 @@
-'use client'
-
 import { useOptionsStore } from 'app/lib/optionsStore'
 import { Button } from 'app/components/button'
 

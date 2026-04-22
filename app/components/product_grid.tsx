@@ -1,5 +1,3 @@
-"use client";
-
 import { Link } from "react-router";
 import { useStore } from "app/lib/store";
 import { useCart } from "app/lib/cart";

@@ -1,5 +1,3 @@
-'use client'
-
 import { useDisconnect, useAccount } from 'wagmi'
 
 export function DisconnectButton({ type, ...props }) {

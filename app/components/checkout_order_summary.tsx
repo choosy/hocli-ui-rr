@@ -1,7 +1,5 @@
-'use client'
-
 import { Minus, Plus, Trash2 } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'react-router'
 
 import { useSession } from 'app/lib/query_hooks'
 
@@ -41,7 +39,7 @@ export function CheckoutOrderSummary() {
                     <span className='ml-2 text-white'>{cartItem.size}</span>
                   </div>
                   <div className='flex'>
-                    <Link href='#' onClick={() => {}}>
+                    <Link to='#' onClick={() => {}}>
                       <div className='text-primary-black bg-accent-yellow text-primary-black mr-3 flex h-6 w-6 items-center justify-center rounded-full font-bold'>
                         <Minus
                           size={18}
@@ -52,7 +50,7 @@ export function CheckoutOrderSummary() {
                       </div>
                     </Link>
                     <div>{cartItem.qty}</div>
-                    <Link href='#' onClick={() => {}}>
+                    <Link to='#' onClick={() => {}}>
                       <div className='text-primary-black bg-accent-yellow text-primary-black ml-3 flex h-6 w-6 items-center justify-center rounded-full font-bold'>
                         <Plus
                           onClick={async (e) =>

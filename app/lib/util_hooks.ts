@@ -1,4 +1,4 @@
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 import { useState, useEffect } from 'react'
 
 export function useContainerDimensions(ref) {

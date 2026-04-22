@@ -1,5 +1,3 @@
-'use client'
-
 import { useCheckout } from 'app/lib/checkout_queries'
 import { useCheckoutStore } from 'app/lib/checkout_store'
 import { useAccount } from 'wagmi'

@@ -1,6 +1,4 @@
-'use client'
-
-import Link from 'next/link'
+import { Link } from 'react-router'
 import { useEffect, useRef } from 'react'
 
 import { useGalleryStore } from 'app/lib/galleryStore'
@@ -55,7 +53,7 @@ export function ImagesDetail({ product, images, ...props }) {
             {unfocusedImages.map((image) => (
               <Link
                 key={image.id}
-                href="#"
+                to="#"
                 onClick={(e) => handleImageFocus(e, image.id)}
               >
                 <img

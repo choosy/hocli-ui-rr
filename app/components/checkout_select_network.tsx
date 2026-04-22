@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from './button'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'

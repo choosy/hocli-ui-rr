@@ -1,6 +1,4 @@
-'use client'
-
-import Link from 'next/link'
+import { Link } from 'react-router'
 import { useOptionsStore } from 'app/lib/optionsStore'
 
 export function Colors({ colors, productId, ...props }) {
@@ -47,7 +45,7 @@ export function Colors({ colors, productId, ...props }) {
               return (
                 <Link
                   key={index}
-                  href="#"
+                  to="#"
                   onClick={async (e) =>
                     handleChooseColor(e, productId, color.color)
                   }

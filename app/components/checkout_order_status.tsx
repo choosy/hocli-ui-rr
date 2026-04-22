@@ -1,5 +1,3 @@
-'use client'
-
 import { useSession } from 'app/lib/query_hooks'
 import { useCheckoutStore } from 'app/lib/checkout_store'
 import {

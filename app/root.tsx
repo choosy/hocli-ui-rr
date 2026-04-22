@@ -30,7 +30,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
     (m) => m.handle && m.handle.hasOwnProperty("bodyClassName"),
   );
 
-  const bodyClass = filteredMatches[0].handle.bodyClassName;
+  const bodyClass =
+    filteredMatches[0]?.handle?.bodyClassName ?? "min-h-screen antialiased";
 
   return (
     <html lang="en">

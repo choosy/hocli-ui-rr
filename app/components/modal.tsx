@@ -1,5 +1,3 @@
-'use client'
-
 import { useCart } from 'app/lib/cart'
 
 export function Modal({ children }) {

@@ -11,7 +11,12 @@ import { Materials } from "app/components/product_materials";
 
 export default async function Product(props) {
   const params = await props.params;
-  const apiUrl = process.env.HOCLIUI_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
+  if (typeof apiUrl !== "string" || !apiUrl) {
+    throw new Error(
+      "VITE_API_URL is not set. Add it to .env (see other pages using the same API base).",
+    );
+  }
   const data = await fetch(`${apiUrl}/get_product`, {
     method: "POST",
     cache: "no-store",

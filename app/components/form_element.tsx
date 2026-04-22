@@ -1,5 +1,3 @@
-'use client'
-
 export function FormElement({ name, children, errors, ...props }) {
   return (
     <>
