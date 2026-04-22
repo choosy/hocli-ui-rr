@@ -4,24 +4,24 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useWriteContract } from 'wagmi'
-import { CheckoutPaneTitle } from '@/components/checkout_pane_title.js'
-import { CheckoutPane } from '@/components/checkout_pane.js'
-import { CheckoutPaneContents } from '@/components/checkout_pane_contents.js'
-import { CheckoutFormDelivery } from '@/components/checkout_form_delivery.jsx'
-import { CheckoutOrderSummary } from '@/components/checkout_order_summary.jsx'
-import { CheckoutSelectNetwork } from '@/components/checkout_select_network.jsx'
-import { CheckoutSelectCoin } from '@/components/checkout_select_coin.jsx'
+import { CheckoutPaneTitle } from 'app/components/checkout_pane_title.js'
+import { CheckoutPane } from 'app/components/checkout_pane.js'
+import { CheckoutPaneContents } from 'app/components/checkout_pane_contents.js'
+import { CheckoutFormDelivery } from 'app/components/checkout_form_delivery.jsx'
+import { CheckoutOrderSummary } from 'app/components/checkout_order_summary.jsx'
+import { CheckoutSelectNetwork } from 'app/components/checkout_select_network.jsx'
+import { CheckoutSelectCoin } from 'app/components/checkout_select_coin.jsx'
 import { Button } from './button'
 
-import { useCheckoutStore } from '@/lib/checkout_store'
-import { useOrderStatus } from '@/lib/checkout_order_status.js'
-import { useGetOrderTotals } from '@/lib/checkout_queries.js'
+import { useCheckoutStore } from 'app/lib/checkout_store'
+import { useOrderStatus } from 'app/lib/checkout_order_status.js'
+import { useGetOrderTotals } from 'app/lib/checkout_queries.js'
 
 import {
   useCheckoutPayment,
   payWithToken,
   handlePlaceOrder,
-} from '@/lib/checkout_payment.js'
+} from 'app/lib/checkout_payment.js'
 
 const schema = z.object({
   delivery_name: z.string().min(3, { message: 'Name is required' }),

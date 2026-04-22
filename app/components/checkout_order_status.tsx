@@ -1,7 +1,7 @@
 'use client'
 
-import { useSession } from '@/lib/query_hooks'
-import { useCheckoutStore } from '@/lib/checkout_store'
+import { useSession } from 'app/lib/query_hooks'
+import { useCheckoutStore } from 'app/lib/checkout_store'
 import {
   useAccount,
   useSendTransaction,

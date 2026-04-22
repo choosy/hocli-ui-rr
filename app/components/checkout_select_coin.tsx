@@ -1,9 +1,9 @@
 'use client'
 
-import { useCheckout } from '@/lib/checkout_queries'
-import { useCheckoutStore } from '@/lib/checkout_store'
+import { useCheckout } from 'app/lib/checkout_queries'
+import { useCheckoutStore } from 'app/lib/checkout_store'
 import { useAccount } from 'wagmi'
-import { useListCoins } from '@/lib/checkout_list_coins'
+import { useListCoins } from 'app/lib/checkout_list_coins'
 import { useState, useEffect } from 'react'
 
 export function CheckoutSelectCoin() {

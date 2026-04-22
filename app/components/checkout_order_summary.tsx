@@ -3,10 +3,10 @@
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 
-import { useSession } from '@/lib/query_hooks'
+import { useSession } from 'app/lib/query_hooks'
 
-import { getImageURLCommon } from '@/lib/images'
-import { useCart } from '@/lib/cart'
+import { getImageURLCommon } from 'app/lib/images'
+import { useCart } from 'app/lib/cart'
 
 export function CheckoutOrderSummary() {
   // web session

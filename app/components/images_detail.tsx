@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
-import { useGalleryStore } from '@/lib/galleryStore'
+import { useGalleryStore } from 'app/lib/galleryStore'
 import {
   selectImageByType,
   getImageURLByWidth,
   getImageURLCommon,
-} from '@/lib/images'
-import { useContainerDimensions } from '@/lib/util_hooks'
+} from 'app/lib/images'
+import { useContainerDimensions } from 'app/lib/util_hooks'
 
 export function ImagesDetail({ product, images, ...props }) {
   const componentRef = useRef()

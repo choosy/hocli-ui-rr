@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useOptionsStore } from '@/lib/optionsStore'
+import { useOptionsStore } from 'app/lib/optionsStore'
 
 export function Colors({ colors, productId, ...props }) {
   const { options, setColor } = useOptionsStore()

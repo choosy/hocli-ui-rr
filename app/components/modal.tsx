@@ -1,6 +1,6 @@
 'use client'
 
-import { useCart } from '@/lib/cart'
+import { useCart } from 'app/lib/cart'
 
 export function Modal({ children }) {
   const { closeCart, cartVisible } = useCart()

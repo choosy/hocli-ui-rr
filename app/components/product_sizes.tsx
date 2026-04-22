@@ -1,7 +1,7 @@
 'use client'
 
-import { useOptionsStore } from '@/lib/optionsStore'
-import { Button } from '@/components/button'
+import { useOptionsStore } from 'app/lib/optionsStore'
+import { Button } from 'app/components/button'
 
 export function Sizes({ productId, sizes, ...props }) {
   const { options, setSize } = useOptionsStore()
