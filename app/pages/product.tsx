@@ -12,6 +12,7 @@ import { Materials } from "app/components/product_materials";
 import type { Route } from "./+types/product";
 
 export async function loader({ params }: Route.LoaderArgs) {
+  const { collection, product } = params;
   console.log("params", params);
   // params { collection: 'moonlit-creatures', product: 'owl' }
 
@@ -29,8 +30,10 @@ export async function loader({ params }: Route.LoaderArgs) {
     },
     body: JSON.stringify({
       _type: "tshirt",
-      collection: params.collection,
-      product: params.product,
+
+      // Using Enhanced Object Literals - having only the key -> will have the value of the variable as that key. see example
+      collection,
+      product,
     }),
   });
 
