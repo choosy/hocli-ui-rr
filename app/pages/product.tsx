@@ -9,8 +9,12 @@ import { Sizes } from "app/components/product_sizes";
 import { Summary } from "app/components/product_summary";
 import { Materials } from "app/components/product_materials";
 
-export default async function Product(props) {
-  const params = await props.params;
+import type { Route } from "./+types/product";
+
+export async function loader({ params }: Route.LoaderArgs) {
+  console.log("params", params);
+  // params { collection: 'moonlit-creatures', product: 'owl' }
+
   const apiUrl = import.meta.env.VITE_API_URL;
   if (typeof apiUrl !== "string" || !apiUrl) {
     throw new Error(
@@ -30,24 +34,13 @@ export default async function Product(props) {
     }),
   });
 
-  const result = await data.json();
-  const product = result.product;
-  const collection = result.collection;
-  const variants = result.variants;
+  return { ...(await data.json()) };
+}
+
+export default async function Product({ loaderData }: Route.ComponentProps) {
+  const { product, collection, variants } = loaderData;
   const colors = getColorsFromVariants(variants);
   const sizes = getSizesFromVariants(variants);
-
-  console.log("in page Product. product is below:");
-  console.log(product);
-
-  console.log("in page Product. collection is below:");
-  console.log(collection);
-
-  console.log("in page Product. variants are below:");
-  console.log(variants);
-
-  console.log("in page Product. colors are below:");
-  console.log(colors);
 
   return (
     <div className="w-full p-4">
