@@ -40,7 +40,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   return { ...(await data.json()) };
 }
 
-export default async function Product({ loaderData }: Route.ComponentProps) {
+export default function Product({ loaderData }: Route.ComponentProps) {
   const { product, collection, variants } = loaderData;
   const colors = getColorsFromVariants(variants);
   const sizes = getSizesFromVariants(variants);

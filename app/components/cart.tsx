@@ -108,13 +108,9 @@ export function Cart() {
               {sessionQuery?.data?.cart &&
                 sessionQuery?.data?.cart.map((cartItem) => (
                   <div key={cartItem.variant_id}>
-                    <div
-                      className="flex flex-row text-white"
-                      key={cartItem.variant_id}
-                    >
-                      <div className="flex-none" key={cartItem.variant_id}>
+                    <div className="flex flex-row text-white">
+                      <div className="flex-none">
                         <img
-                          key={cartItem.variant_id}
                           alt={cartItem.name}
                           src={getImageURLCommon(
                             cartItem.image,
@@ -125,10 +121,7 @@ export function Cart() {
                         />
                       </div>
                       {/* begin box BIG on the right */}
-                      <div
-                        className="my-6 flex w-full flex-row"
-                        key={cartItem.variant_id}
-                      >
+                      <div className="my-6 flex w-full flex-row">
                         {/* begin box-on-left */}
                         <div className="flex grow flex-col justify-between">
                           <div>{cartItem.name}</div>

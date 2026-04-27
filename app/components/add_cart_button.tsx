@@ -7,12 +7,14 @@ export function AddCartButton({ className, productId, ...props }) {
 
   console.log("########### options are ##########");
 
-  console.log(options);
+  console.log("options", options);
 
   const optionsSelected =
     productId in options &&
     "color" in options[productId] &&
     "size" in options[productId];
+
+  console.log("optionsSelected", optionsSelected);
 
   return (
     <button
