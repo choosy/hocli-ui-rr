@@ -1,52 +1,52 @@
-import { useForm, FormProvider } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { useWriteContract } from 'wagmi'
-import { CheckoutPaneTitle } from 'app/components/checkout_pane_title.js'
-import { CheckoutPane } from 'app/components/checkout_pane.js'
-import { CheckoutPaneContents } from 'app/components/checkout_pane_contents.js'
-import { CheckoutFormDelivery } from 'app/components/checkout_form_delivery.jsx'
-import { CheckoutOrderSummary } from 'app/components/checkout_order_summary.jsx'
-import { CheckoutSelectNetwork } from 'app/components/checkout_select_network.jsx'
-import { CheckoutSelectCoin } from 'app/components/checkout_select_coin.jsx'
-import { Button } from './button'
+import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useWriteContract } from "wagmi";
+import { CheckoutPaneTitle } from "app/components/checkout_pane_title";
+import { CheckoutPane } from "app/components/checkout_pane";
+import { CheckoutPaneContents } from "app/components/checkout_pane_contents";
+import { CheckoutFormDelivery } from "app/components/checkout_form_delivery";
+import { CheckoutOrderSummary } from "app/components/checkout_order_summary";
+import { CheckoutSelectNetwork } from "app/components/checkout_select_network";
+import { CheckoutSelectCoin } from "app/components/checkout_select_coin";
+import { Button } from "./button";
 
-import { useCheckoutStore } from 'app/lib/checkout_store'
-import { useOrderStatus } from 'app/lib/checkout_order_status.js'
-import { useGetOrderTotals } from 'app/lib/checkout_queries.js'
+import { useCheckoutStore } from "app/lib/checkout_store";
+import { useOrderStatus } from "app/lib/checkout_order_status";
+import { useGetOrderTotals } from "app/lib/checkout_queries";
 
 import {
   useCheckoutPayment,
   payWithToken,
   handlePlaceOrder,
-} from 'app/lib/checkout_payment.js'
+} from "app/lib/checkout_payment";
 
 const schema = z.object({
-  delivery_name: z.string().min(3, { message: 'Name is required' }),
-  address_line1: z.string().min(5, { message: 'Address line 1 is required' }),
+  delivery_name: z.string().min(3, { message: "Name is required" }),
+  address_line1: z.string().min(5, { message: "Address line 1 is required" }),
   address_line2: z.string(),
-  city: z.string().min(3, { message: 'City is required' }),
-  zip_code: z.string().min(2, { message: 'Zip code is required' }),
+  city: z.string().min(3, { message: "City is required" }),
+  zip_code: z.string().min(2, { message: "Zip code is required" }),
   state: z.string(),
-  country: z.string().nonempty('Country is required'),
-})
+  country: z.string().nonempty("Country is required"),
+});
 
-const HOCLI_ADDRESS = '0xbcd01efD5Cd8AE3157460Ca50ACE062F98e10B60'
+const HOCLI_ADDRESS = "0xbcd01efD5Cd8AE3157460Ca50ACE062F98e10B60";
 
 export function CheckoutPanes() {
-  const { writeContractAsync } = useWriteContract()
+  const { writeContractAsync } = useWriteContract();
 
   // checkout form -> get useForm results as a variable to pass it around to children components
   // fetch methods like onSubmit and so on
-  const formObj = useForm({ resolver: zodResolver(schema) })
+  const formObj = useForm({ resolver: zodResolver(schema) });
 
-  let getOrderTotals = useGetOrderTotals()
-  console.log('getOrderTotals.data is', getOrderTotals.data)
+  let getOrderTotals = useGetOrderTotals();
+  console.log("getOrderTotals.data is", getOrderTotals.data);
 
   function onSubmit() {
-    let amount = getOrderTotals.data.order_total_usd
+    let amount = getOrderTotals.data.order_total_usd;
 
-    payWithToken(writeContractAsync)
+    payWithToken(writeContractAsync);
     //handlePlaceOrder(sendTransaction, toAddress, amount)
   }
 
@@ -58,40 +58,40 @@ export function CheckoutPanes() {
   //const { setOrderStatus } = useCheckoutStore()
   //useOrderStatus(txStatus, txHash, txError, txReceipt)
 
-  const toAddress = HOCLI_ADDRESS
+  const toAddress = HOCLI_ADDRESS;
 
-  let payButtonValue = 'PLACE ORDER'
+  let payButtonValue = "PLACE ORDER";
 
   return (
     <FormProvider {...formObj}>
-      <form onSubmit={formObj.handleSubmit(onSubmit)} className='space-y-6'>
-        <div className='flex flex-wrap gap-x-5'>
+      <form onSubmit={formObj.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="flex flex-wrap gap-x-5">
           <CheckoutPane>
-            <CheckoutPaneTitle text='Delivery Details' />
+            <CheckoutPaneTitle text="Delivery Details" />
             <CheckoutPaneContents>
               <CheckoutFormDelivery />
             </CheckoutPaneContents>
           </CheckoutPane>
           <CheckoutPane>
-            <CheckoutPaneTitle text='Order Summary' />
+            <CheckoutPaneTitle text="Order Summary" />
             <CheckoutPaneContents>
               <CheckoutOrderSummary />
             </CheckoutPaneContents>
           </CheckoutPane>
-          <CheckoutPane extraClass='self-end-safe'>
-            <CheckoutPaneTitle text='Payment settings' />
+          <CheckoutPane extraClass="self-end-safe">
+            <CheckoutPaneTitle text="Payment settings" />
             <CheckoutPaneContents>
               <CheckoutSelectNetwork />
               <CheckoutSelectCoin />
             </CheckoutPaneContents>
           </CheckoutPane>
-          <div className='w-full grow-4'>
-            <Button type='submit' className='w-full'>
+          <div className="w-full grow-4">
+            <Button type="submit" className="w-full">
               {payButtonValue}
             </Button>
           </div>
         </div>
       </form>
     </FormProvider>
-  )
+  );
 }
