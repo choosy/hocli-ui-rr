@@ -1,45 +1,46 @@
-import { useCheckout } from 'app/lib/checkout_queries'
-import { useCheckoutStore } from 'app/lib/checkout_store'
-import { useAccount } from 'wagmi'
-import { useListCoins } from 'app/lib/checkout_list_coins'
-import { useState, useEffect } from 'react'
+import { useCheckout } from "app/lib/checkout_queries";
+import { useCheckoutStore } from "app/lib/checkout_store";
+import { useChainId } from "wagmi";
+import { useListCoins } from "app/lib/checkout_list_coins";
+import { useState, useEffect } from "react";
 
 export function CheckoutSelectCoin() {
-  const { chainId } = useAccount()
+  const chainId = useChainId();
 
-  const coins = useListCoins(chainId)
+  console.log("chainId:", chainId);
+  const coins = useListCoins(chainId);
 
-  const { selectedCoin, setSelectedCoin } = useCheckoutStore()
+  const { selectedCoin, setSelectedCoin } = useCheckoutStore();
 
   const handleCoinSelect = (coin) => {
-    setSelectedCoin(coin)
-    console.log('Selected coin:', coin)
-  }
+    setSelectedCoin(coin);
+    console.log("Selected coin:", coin);
+  };
 
-  console.log('coins are')
+  console.log("coins are");
 
-  console.log(coins.data)
+  console.log(coins.data);
 
-  if (coins.isLoading) return <div>Loading coins...</div>
-  if (coins.error) return <div>Error loading coins</div>
+  if (coins.isLoading) return <div>Loading coins...</div>;
+  if (coins.error) return <div>Error loading coins</div>;
 
   return (
-    <div className='flex flex-wrap gap-4 p-4'>
+    <div className="flex flex-wrap gap-4 p-4">
       {coins.data?.map((coin) => (
         <div
           key={coin.symbol || coin.address}
           onClick={() => handleCoinSelect(coin)}
           className={`cursor-pointer rounded-lg border-1 p-2 ${
             selectedCoin?.symbol === coin.symbol
-              ? 'bg-accent-yellow border-1 border-white'
-              : 'hover:bg-accent-yellow bg-olive-strong border-olive-strong'
+              ? "bg-accent-yellow border-1 border-white"
+              : "hover:bg-accent-yellow bg-olive-strong border-olive-strong"
           }`}
         >
           {coin.icon_url && (
             <img
               src={coin.icon_url}
               alt={coin.symbol}
-              className='mx-auto h-12 w-12'
+              className="mx-auto h-12 w-12"
             />
           )}
 
@@ -47,5 +48,5 @@ export function CheckoutSelectCoin() {
         </div>
       ))}
     </div>
-  )
+  );
 }

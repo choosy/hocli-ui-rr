@@ -1,5 +1,6 @@
-import { create } from 'zustand'
-import { produce } from 'immer'
+import { create } from "zustand";
+import { produce } from "immer";
+import type { Coin, OrderStatus, CheckoutState } from "app/types/checkout.ts";
 
 // 1. start from: () => set(  )
 // 2. call set() with an arrow function that returns a partial object of the modified state
@@ -8,19 +9,19 @@ import { produce } from 'immer'
 
 // https://youtu.be/-Y8brhQKvtA?t=611
 
-export const useCheckoutStore = create((set) => ({
+export const useCheckoutStore = create<CheckoutState>()((set) => ({
   customer: null,
   setCustomer: (customer) =>
     set(
-      produce((state) => {
-        state.customer = customer
+      produce((state: CheckoutState) => {
+        state.customer = customer;
       }),
     ),
   delivery: null,
   setDelivery: (delivery) =>
     set(
-      produce((state) => {
-        state.delivery = delivery
+      produce((state: CheckoutState) => {
+        state.delivery = delivery;
       }),
     ),
 
@@ -30,9 +31,9 @@ export const useCheckoutStore = create((set) => ({
       orderStatus: { status: status, title: title, message: message },
     })), // setOrderStatus
 
-  lastOrderId: '',
-  setLastOrderId: (val) => set(() => ({ lastOrderId: val })), // setLastOrderId
+  lastOrderId: "",
+  setLastOrderId: (val) => set({ lastOrderId: val }), // setLastOrderId
 
   selectedCoin: null,
-  setSelectedCoin: (coin) => set(() => ({ selectedCoin: coin })), // setSelectedCoin
-}))
+  setSelectedCoin: (coin) => set({ selectedCoin: coin }), // setSelectedCoin
+}));
