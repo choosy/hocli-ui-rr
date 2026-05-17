@@ -1,6 +1,6 @@
+import { useChainId } from "wagmi";
 import { useCheckout } from "app/lib/checkout_queries";
 import { useCheckoutStore } from "app/lib/checkout_store";
-import { useChainId } from "wagmi";
 import { useListCoins } from "app/lib/checkout_list_coins";
 import { useState, useEffect } from "react";
 
