@@ -1,5 +1,5 @@
 import { http, createConfig } from "wagmi";
-import { mainnet, sepolia } from "wagmi/chains";
+import { mainnet, base, optimism, arbitrum } from "wagmi/chains";
 import { injected, walletConnect } from "wagmi/connectors";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
@@ -8,11 +8,14 @@ const queryClient = new QueryClient();
 const projectId = "219e7a99b034877bcf6702148fdd5840";
 
 export const config = createConfig({
-  chains: [mainnet, sepolia],
+  chains: [mainnet, base, optimism, arbitrum], //sepolia],
   connectors: [injected(), walletConnect({ projectId })],
   transports: {
     [mainnet.id]: http(),
-    [sepolia.id]: http(),
+    [base.id]: http(),
+    [optimism.id]: http(),
+    [arbitrum.id]: http(),
+    //[sepolia.id]: http(),
   },
   ssr: true,
 });
